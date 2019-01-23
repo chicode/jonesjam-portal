@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css?family=Karla:400,700');
+
+$font-family-base: Karla;
+
+$gray-150: hsl(0, 0, 95%);
+
+$primary: hsl(201, 87%, 54%);
+$primary-light: hsl(201, 100%, 84%);
+$danger: hsl(0, 100%, 42%);
+$success: hsl(158, 68%, 45%);
+
+$theme-colors: (
+  "primary-light": $primary-light,
+);
+
+$text-muted: hsl(0, 0, 70%);
+$headings-line-height: 1.5;
+
+@import "~@/../node_modules/bootstrap/scss/bootstrap-grid";
+@import "~@/../node_modules/bootstrap/scss/bootstrap-reboot";
+@import "~@/../node_modules/bootstrap/scss/type";
+@import "~@/../node_modules/bootstrap/scss/utilities";
+
+@each $color, $value in $theme-colors {
+  .btn-text-#{$color} {
+    color: map_get($theme-colors, $color);
+    font-weight: bold;
+  }
+}
+
+// FIXES
+
+button {
+  cursor: pointer;
+}
+
+button, input {
+  border: 0;
+  padding: 0;
+  &:focus {
+    outline: 0;
+  }
+  background-color: transparent;
+}
+
+button, input, label {
+  display: block;
+}
+
+.d-flex, .row {
+  & > * {
+    margin-bottom: 0;
+  }
+}
+
+label {
+  display: flex;
+  align-items: center;
+  & > * {
+    margin-right: .5rem;
+    margin-bottom: 0;
+  }
+}
+
+// fix bootstrap display css overriding vue v-show
+*[style*="display: none"] {
+  display: none !important
+}
+
+// STYLES
+
+button {
+  font-size: $h4-font-size;
+}
+
+@mixin standard-border {
+  border: 3px solid $primary-light;
+}
+
+.tile-1 {
+  @include standard-border;
+  padding: 2rem;
+  margin-bottom: 3rem;
+}
+
+.tile-2, input {
+  background: $gray-150;
+  border-radius: 5px;
+}
+
+.tile-2 {
+  padding: 1rem;
+  margin: 1rem;
+}
+
+.display-1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-weight: bold;
+}
+
+@include media-breakpoint-down(lg) {
+  .display-1 {
+    font-size: 4rem;
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .display-1 {
+    font-size: 3rem;
+  }
+  .container {
+    max-width: 100%;
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  :root {
+    font-size: .8rem;
+  }
+}
+
+
